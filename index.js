@@ -40,7 +40,7 @@ const makeBlogtimeImage = async (gitSrc, options) => {
   ctx.antialias = 'none';
 
   // load 6x12 font
-  const bdfbody = fs.readFileSync('fonts/6x12.bdf');
+  const bdfbody = fs.readFileSync(__dirname+'/fonts/6x12.bdf');
   const font = new BDFFont(bdfbody.toString());
 
   const fontWidth = 6;
@@ -169,11 +169,10 @@ const mergeOptions = (directoriesConfig, pluginOptions) => {
     outputDir: path.join(directoriesConfig ? directoriesConfig.output : '', 'bt-images/'),
     urlPath: '/bt-images/',
     hashLength: 10,
-    generateHTML: (outputUrl) => `<img alt="Blogtimes histogram" src="${outputUrl}" />`,
+    generateHTML: (outputUrl, options) => `<img alt="Blogtimes histogram" width="${options.width}" height="${options.height}" src="${outputUrl}" />`,
     ...pluginOptions,
   }
 }
-
 /**
  * @param { Buffer } [img]
  * @param { import('@photogabble/eleventy-plugin-blogtimes').EleventyPluginBlogtimesOptions } [options]
@@ -198,19 +197,21 @@ module.exports = function (eleventyConfig, pluginOptions) {
     directoriesConfig = dir;
   });
 
-  eleventyConfig.addAsyncShortcode('blogtimes', async (inputPath, data) => {
+  eleventyConfig.addAsyncShortcode('blogtimes', async (gitPath, shortCodeOptions) => {
     const options = mergeOptions(directoriesConfig, pluginOptions);
+
+    if (!gitPath) gitPath = directoriesConfig.input;
 
     if (!fs.existsSync(options.outputDir)) {
       fs.mkdirSync(options.outputDir, {recursive: true});
     }
 
-    const canvas = await makeBlogtimeImage('./', options);
+    const canvas = await makeBlogtimeImage(gitPath, options);
     const buffer = canvas.toBuffer("image/png"); // TODO: Listen to options.outputFileExtension
 
     const { outputFilePath, outputUrl } = getOutputParameters(buffer, options);
 
     fs.writeFileSync(outputFilePath, buffer);
-    return options.generateHTML(outputUrl);
+    return options.generateHTML(outputUrl, {...options, ...shortCodeOptions});
   });
 };
