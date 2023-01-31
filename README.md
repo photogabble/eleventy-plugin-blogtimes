@@ -48,12 +48,13 @@ type EleventyPluginBlogtimesOptions = {
   vPadding?: number, // Padding left and right, default: 5
   showTicks?: boolean, // Show ticks, default: true
   unitName?: string, // Units, displayed centered at bottom, default: 'hour of day'
-  src: string, // Git source path, required
-  dist: string // Image destination path, must end in /
+
+  outputFileExtension: string, // Image mimetype, default: 'png, must be either png or jpg
+  outputDir: string, // Image output directory, default: 'bt-images'
+  urlPath: string, // Image url path, default: 'bt-images'
+  hashLength?: number; // Image filename hash length, default: 10
 }
 ```
-
-All options except `src` and `dist` are optional.
 
 ## Usage
 
@@ -67,6 +68,14 @@ module.exports = (eleventyConfig) => {
   });
 };
 ```
+
+You will now be able to use the `blogtimes` shortcode in your templates:
+
+```nunjucks
+{{ blogtimes }}
+```
+
+By default, blogtimes will process the git stats for the repository its run in. You can change that by passing an absolute path to the shortcode.
 
 ## Libraries in use
 

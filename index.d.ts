@@ -7,12 +7,11 @@ type EleventyPluginBlogtimesOptions = {
   vPadding?: number, // Padding left and right, default: 5
   showTicks?: boolean, // Show ticks, default: true
   unitName?: string, // Units, displayed centered at bottom, default: 'hour of day'
-  src: string, // Git source path, required
 
-  outputFileExtension: string,
-  outputDir: string,
-  urlPath: string,
-  hashLength?: number;
+  outputFileExtension: string, // Image mimetype, default: 'png, must be either png or jpg
+  outputDir: string, // Image output directory, default: 'bt-images'
+  urlPath: string, // Image url path, default: 'bt-images'
+  hashLength?: number; // Image filename hash length, default: 10
 }
 
 type DirectoriesConfig = {
