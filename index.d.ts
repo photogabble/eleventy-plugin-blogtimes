@@ -11,7 +11,9 @@ type EleventyPluginBlogtimesOptions = {
   outputFileExtension: string, // Image mimetype, default: 'png, must be either png or jpg
   outputDir: string, // Image output directory, default: 'bt-images'
   urlPath: string, // Image url path, default: 'bt-images'
-  hashLength?: number; // Image filename hash length, default: 10
+  hashLength?: number, // Image filename hash length, default: 10
+
+  generateHTML?: Function,
 }
 
 type DirectoriesConfig = {
