@@ -62,17 +62,14 @@ In your Eleventy config file (defaults to `.eleventy.js`):
 
 ```js
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addPlugin(require('@photogabble/eleventy-plugin-blogtimes'),{
-    src: './',
-    dist: './img/'
-  });
+  eleventyConfig.addPlugin(require('@photogabble/eleventy-plugin-blogtimes'),{});
 };
 ```
 
 You will now be able to use the `blogtimes` shortcode in your templates:
 
 ```nunjucks
-{{ blogtimes }}
+{% blogtimes %}
 ```
 
 By default, blogtimes will process the git stats for the repository its run in. You can change that by passing an absolute path to the shortcode.
