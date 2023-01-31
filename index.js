@@ -206,8 +206,14 @@ module.exports = function (eleventyConfig, pluginOptions) {
       fs.mkdirSync(options.outputDir, {recursive: true});
     }
 
+    if (['png', 'jpg'].includes(options.outputFileExtension) === false) throw new Error('[@photogabble/eleventy-plugin-blogtimes] supported outputFileExtensions are png and jpg');
+
+    const mimeType = options.outputFileExtension === 'png'
+      ? 'image/png'
+      : 'image/jpeg';
+
     const canvas = await makeBlogtimeImage(gitPath, options);
-    const buffer = canvas.toBuffer("image/png"); // TODO: Listen to options.outputFileExtension
+    const buffer = canvas.toBuffer(mimeType);
 
     const { outputFilePath, outputUrl } = getOutputParameters(buffer, options);
 
