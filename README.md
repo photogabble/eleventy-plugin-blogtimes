@@ -73,7 +73,6 @@ module.exports = (eleventyConfig) => {
 - [node canvas](https://www.npmjs.com/package/canvas)
 - [bdf-canvas](https://www.npmjs.com/package/bdf-canvas)
 - [git-log-parser](https://www.npmjs.com/package/git-log-parser)
-- [spacetime](https://www.npmjs.com/package/spacetime)
 
 ## License
 
