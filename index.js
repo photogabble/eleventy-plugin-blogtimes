@@ -159,7 +159,7 @@ const mergeOptions = (directoriesConfig, pluginOptions) => {
     width: 480,
     height: 65,
     title: 'Git Commits',
-    lastXDays: 90,
+    lastXDays: 30,
     hPadding: 5,
     vPadding: 5,
     showTicks: true,
