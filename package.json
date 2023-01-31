@@ -1,0 +1,49 @@
+{
+  "name": "@photogabble/eleventy-plugin-blogtimes",
+  "version": "1.0.0",
+  "description": "Blogtimes graph generator for 11ty",
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "eleventy-plugin",
+    "blogtimes"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "test-coverage": "c8 ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/photogabble/eleventy-plugin-blogtimes.git"
+  },
+  "author": "Simon Dann (https://photogabble.co.uk/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/photogabble/eleventy-plugin-blogtimes/issues"
+  },
+  "homepage": "https://github.com/photogabble/eleventy-plugin-blogtimes#readme",
+  "peerDependencies": {
+    "@11ty/eleventy": "*"
+  },
+  "peerDependenciesMeta": {
+    "@11ty/eleventy": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "bdf-canvas": "^1.0.1",
+    "canvas": "^2.11.0",
+    "git-log-parser": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "^5.1.1",
+    "c8": "^7.12.0"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}
